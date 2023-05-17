@@ -15,7 +15,7 @@ const ProductCard = ({ product }) => {
 	if (product === (null || undefined)) return;
 
 	const { name, price, imageUrl } = product;
-	console.log(product);
+	// console.log(product);
 
 	return (
 		<div className='product-card-container'>

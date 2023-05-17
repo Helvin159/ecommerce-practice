@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import {
-	createAuthUserWithEmailAndPassword,
 	createUserDocFromAuth,
 	signInAuthUserWithEmailAndPassword,
 	signInWithGooglePopup,
@@ -8,7 +7,6 @@ import {
 import FormInput from '../form-input/form-input.component';
 
 import Button from '../button/button.component';
-import { signInWithEmailAndPassword } from 'firebase/auth';
 
 import './sign-in.styles.scss';
 
@@ -19,8 +17,6 @@ const defaultFormFields = {
 
 const SignInForm = () => {
 	const [formFields, setFormFields] = useState(defaultFormFields);
-
-	// console.log(formFields);
 	const { email, password } = formFields;
 
 	const resetFields = () => {
@@ -28,9 +24,7 @@ const SignInForm = () => {
 	};
 
 	const signInWithGoogle = async () => {
-		const { user } = await signInWithGooglePopup();
-		await createUserDocFromAuth(user);
-		console.log(user);
+		await signInWithGooglePopup();
 	};
 
 	const handleChange = (e) => {
@@ -42,8 +36,11 @@ const SignInForm = () => {
 		e.preventDefault();
 
 		try {
-			const res = await signInAuthUserWithEmailAndPassword(email, password);
-			console.log(res);
+			const { user } = await signInAuthUserWithEmailAndPassword(
+				email,
+				password
+			);
+
 			resetFields();
 		} catch (e) {
 			switch (e.code) {
@@ -52,6 +49,9 @@ const SignInForm = () => {
 					break;
 				case 'auth/user-not-found':
 					alert('Error, user not found');
+					break;
+				case 'auth/network-request-failed':
+					alert('Request failed');
 					break;
 				default:
 					console.log('Error loging user in.', e);

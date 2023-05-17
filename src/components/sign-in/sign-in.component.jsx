@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import {
-	createUserDocFromAuth,
 	signInAuthUserWithEmailAndPassword,
 	signInWithGooglePopup,
 } from '../../utils/firebase.utils';
@@ -36,10 +35,7 @@ const SignInForm = () => {
 		e.preventDefault();
 
 		try {
-			const { user } = await signInAuthUserWithEmailAndPassword(
-				email,
-				password
-			);
+			await signInAuthUserWithEmailAndPassword(email, password);
 
 			resetFields();
 		} catch (e) {

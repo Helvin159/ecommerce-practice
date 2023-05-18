@@ -26,10 +26,9 @@ export const Total = styled.span`
 export const HeaderBlock = styled.div`
 	text-transform: capitalize;
 	width: 23%;
-`;
-
-export const HeaderBlockLastChild = styled.div`
-	width: 8%;
+	&:last-child {
+		width: 8%;
+	}
 `;
 
 // .header-block {

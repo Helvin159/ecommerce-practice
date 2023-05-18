@@ -7,7 +7,6 @@ import {
 	CheckoutContainer,
 	CheckoutHeader,
 	HeaderBlock,
-	HeaderBlockLastChild,
 	Total,
 } from './checkout.styles.jsx';
 
@@ -29,9 +28,9 @@ const Checkout = () => {
 				<HeaderBlock>
 					<span>Price</span>
 				</HeaderBlock>
-				<HeaderBlockLastChild>
+				<HeaderBlock>
 					<span>Remove</span>
-				</HeaderBlockLastChild>
+				</HeaderBlock>
 			</CheckoutHeader>
 			{cartItems.map((cartItem) => (
 				<CheckoutItem cartItem={cartItem} key={cartItem.id} />

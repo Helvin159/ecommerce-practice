@@ -8,7 +8,7 @@ import {
 const DirectoryItem = ({ category }) => {
 	const { id, title, imageUrl, route } = category;
 	const navigate = useNavigate();
-	const onNavigateHandler = useNavigate(route);
+	const onNavigateHandler = navigate(route);
 	return (
 		<DirectoryItemContainer onClick={onNavigateHandler} key={id}>
 			<BackgroundImage imageurl={imageUrl} />
